@@ -1,7 +1,1 @@
-import React from 'react'
-
-export default function Deals() {
-  return (
-    <div>Deals Home</div>
-  )
-}
+export { default } from './DealsPage'

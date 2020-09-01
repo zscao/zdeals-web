@@ -1,0 +1,3 @@
+export const SEARCH_DEALS = 'DEALS/SEARCH_DEALS'
+export const QUERY_MORE = 'DEALS/QUERY_MORE'
+export const VISIT_DEAL = 'DEALS/VISIT_DEAL'

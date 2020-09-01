@@ -1,15 +1,22 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
+import { Container } from '@material-ui/core'
+import { ThemeProvider } from '@material-ui/core'
+
 import DealsPage from './deals'
 import AboutPage from './about'
 import HomePage from './home'
 
+import { theme, useStyles } from './AppStyles'
+
 function App() {
+
+  const classes = useStyles();
+
   return (
-    <div>
-      <h2>ZDeals Web (Material UI verion)</h2>
-      <hr/>
+    <ThemeProvider theme={theme}>
+    <Container classes={{root: classes.mainRoot}}>
       <Router>
         <Switch>
           <Route exact path="/">
@@ -23,7 +30,8 @@ function App() {
           </Route>
         </Switch>
       </Router>
-    </div>
+    </Container>
+    </ThemeProvider>
   );
 }
 

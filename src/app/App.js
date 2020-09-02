@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 import { Container } from '@material-ui/core'
 import { ThemeProvider } from '@material-ui/core'
@@ -19,15 +19,16 @@ function App() {
     <Container classes={{root: classes.mainRoot}}>
       <Router>
         <Switch>
-          <Route exact path="/">
+          {/* <Route exact path="/">
             <HomePage />
-          </Route>
+          </Route> */}
           <Route path="/deals">
             <DealsPage />
           </Route>
           <Route path="/about">
             <AboutPage />
           </Route>
+          <Redirect to="/deals" />
         </Switch>
       </Router>
     </Container>

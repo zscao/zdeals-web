@@ -1,11 +1,8 @@
-import { fade, makeStyles } from '@material-ui/core/styles'
+import { fade } from '@material-ui/core/styles'
 
-export const useStyles = makeStyles(theme => ({
+export const styles = theme => ({
   toolbar: {
     marginTop: theme.spacing(1),
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
     fontSize: '0.9em',
   },
   select: {
@@ -17,5 +14,9 @@ export const useStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: fade('#dadada', 1),
     },
+  },
+  sort: {
+    paddingRight: theme.spacing(1),
+    fontSize: '0.8em',
   }
-}))
+})

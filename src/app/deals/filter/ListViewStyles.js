@@ -1,8 +1,7 @@
-import { fade, makeStyles } from '@material-ui/core/styles'
 
-export const useStyles = makeStyles(theme => ({
-  list: {
+export const styles = theme => ({
+  filters: {
     //paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(2),
+    paddingRight: theme.spacing(3),
   },
-}))
+})

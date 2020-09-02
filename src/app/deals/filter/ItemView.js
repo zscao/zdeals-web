@@ -1,23 +1,48 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Box, Typography, Checkbox } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
 
-import { useStyles } from './ItemViewStyles'
+import { styles } from './ItemViewStyles'
+
+function ListView({filter = {}, onChange, classes}) {
+
+  const [current, setCurrent] = useState(filter);
+
+  useEffect(() => {
+    setCurrent(filter);
+  }, [filter]) 
 
 
-export default function ListView({filter = {}}) {
+  const changeFilter = (item, checked) => {
+    item.selected = checked;
 
-  const classes = useStyles();
+    if(!onChange) return;
+
+    const selected = [];
+    current.items.forEach(t => {
+      if(t.value === item.value) {
+        if(checked) selected.push(t.value);
+      }
+      else {
+        if(t.selected) selected.push(t.value);
+      }
+    })
+    onChange(current.code, selected)
+  }
 
   return (
       <Box>
         <Typography variant="h6">
-          {filter.title}
+          {current.title}
         </Typography>
-        {Array.isArray(filter.items) && filter.items.map(item => (
+        {Array.isArray(current.items) && current.items.map(item => (
           <Box key={item.value} display="flex" justifyContent="space-between" alignItems="center" className={classes.item}>
             <span>{item.name}</span>
-            <Checkbox classes={{root: classes.checkbox}} color="default" />
+            <Checkbox classes={{root: classes.checkbox}} checked={item.selected} color="default" onChange={e => changeFilter(item, e.target.checked)} />
           </Box>))}
       </Box>
   )
 }
+
+const styled = withStyles(styles)(ListView)
+export default styled

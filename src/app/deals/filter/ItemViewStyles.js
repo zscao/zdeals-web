@@ -1,6 +1,6 @@
-import { fade, makeStyles } from '@material-ui/core/styles'
+import { fade } from '@material-ui/core/styles'
 
-export const useStyles = makeStyles(theme => ({
+export const styles = theme => ({
   item: {
     paddingLeft: theme.spacing(1),
     '&:hover': {
@@ -11,4 +11,4 @@ export const useStyles = makeStyles(theme => ({
     padding: '2px',
   }
 
-}))
+})

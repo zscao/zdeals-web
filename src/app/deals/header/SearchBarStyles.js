@@ -1,6 +1,6 @@
-import { fade, makeStyles } from '@material-ui/core/styles'
+import { fade } from '@material-ui/core/styles'
 
-export const useStyles = makeStyles(theme => ({
+export const styles = theme => ({
   search: {
     display: 'flex',
     borderRadius: theme.shape.borderRadius,
@@ -9,8 +9,7 @@ export const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(2),
   },
   searchButton: {
-    borderTopRightRadius: theme.shape.borderRadius,
-    borderBottomRightRadius: theme.shape.borderRadius,
+    borderRadius: theme.shape.borderRadius,
     marginLeft: theme.spacing(1),
     backgroundColor: theme.palette.warning.light,
     '&:hover': {
@@ -34,4 +33,4 @@ export const useStyles = makeStyles(theme => ({
   },
   inputInput: {
   },
-}))
+})

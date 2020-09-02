@@ -1,6 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles'
-
-export const useStyles = makeStyles(theme => ({
+export const styles = theme => ({
   menuButton: {
     [theme.breakpoints.up('sm')] : {
       marginRight: theme.spacing(2),
@@ -31,4 +29,4 @@ export const useStyles = makeStyles(theme => ({
       display: 'none',
     },
   }
-}))
+})

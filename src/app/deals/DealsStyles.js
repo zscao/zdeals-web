@@ -2,10 +2,9 @@
 export const styles = theme => ({
   dealsBox: {
     marginTop: theme.spacing(1),
+    minHeight: 'calc(100vh - 200px)',
 
-    [theme.breakpoints.up('sm')]: {
-      paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(2),
-    }
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
   }
 })

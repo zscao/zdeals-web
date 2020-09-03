@@ -2,13 +2,11 @@ import { fade } from '@material-ui/core/styles'
 
 export const styles = theme => ({
   topbar: {
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(3),
     fontSize: '0.9em',
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
     
-    [theme.breakpoints.up('sm')]: {
-      paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(2),
-    }
   },
   select: {
     paddingLeft: theme.spacing(1),

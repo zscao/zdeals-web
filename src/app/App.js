@@ -7,7 +7,7 @@ import { withSplashScreen } from './shared'
 
 import DealsPage from './deals'
 import AboutPage from './about'
-import Footer from './footer'
+import Footer from './shared/footer'
 
 import { theme, useStyles } from './AppStyles'
 

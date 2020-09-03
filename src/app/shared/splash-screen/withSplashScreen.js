@@ -2,12 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
-import { dealSearchHelper } from '../../shared'
+import LoadingMessage from './LoadingMessage'
+
+import { dealSearchHelper } from '../../helpers'
 
 import * as dealsActions from '../../../state/ducks/deals/actions'
 import * as categoryActions from '../../../state/ducks/categories/actions'
-
-import './SplashScreen.css'
 
 
 export function withSplashScreen(WrappedComponent) {
@@ -34,7 +34,7 @@ export function withSplashScreen(WrappedComponent) {
 
     render() {
       if(this.state.loaded) return <WrappedComponent {...this.props} />
-      return LoadingMessage();
+      return <LoadingMessage />
     }
   }
   
@@ -51,11 +51,3 @@ export function withSplashScreen(WrappedComponent) {
 }
 
 
-function LoadingMessage() {
-  return (
-    <div className="splash-screen">
-      Please wait a moment while loading ...
-      <div className="loading-dot">.</div>
-    </div>
-  )
-}

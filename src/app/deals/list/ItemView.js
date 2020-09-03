@@ -1,11 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Box, Grid, Paper, Typography, Button } from '@material-ui/core'
+import Alert from '@material-ui/lab/Alert'
 
 import { useStyles } from './ItemViewStyles'
 
-export default function ItemView({ deal }) {
+export default function ItemView({ deal, onBuyNow }) {
+
+  const [expired, setExpired] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const classes = useStyles();
+
+  if(!deal) return null;
+
+  const buyNow = () => {
+    if (typeof (onBuyNow) === 'function') {
+      setLoading(true);
+      onBuyNow(deal)
+        .then(response => {
+          setLoading(false);
+          //console.log('after buy now: ', response);
+        })
+        .catch(error => {
+          setLoading(false);
+          setExpired(true);
+        });
+    }
+  }
 
   return (
     <Paper elevation={3} classes={{ root: classes.deal }}>
@@ -13,7 +34,7 @@ export default function ItemView({ deal }) {
         <Grid item sm={2}></Grid>
         <Grid item sm={8}>
           <Box className={classes.meta}>
-            {deal.store && <span><a href="{deal.store.website}">{deal.store.name}</a> | </span>}
+            {deal.store && <span><a target="_blank" rel="noopener" href={deal.store.website}>{deal.store.name}</a> | </span>}
             <span>{deal.createdTimeString}</span>
           </Box>
         </Grid>
@@ -34,10 +55,13 @@ export default function ItemView({ deal }) {
             <span className="highlight">{deal.highlight}</span>
           </Box>
           <Typography variant="body2" classes={{ root: classes.description }}>{deal.description}</Typography>
+          {expired && <Alert severity="warning">Oops! This deal is temporarily unavailable or has expired.</Alert>}
         </Grid>
         <Grid item sm={2} xs={12}>
           <Box className={classes.actions}>
-            <Button variant="contained" color="primary">Buy Now</Button>
+            <Button variant="contained" color="primary" disabled={expired || loading} onClick={buyNow}>
+              {loading ? 'Opening' : 'Buy Now'}
+            </Button>
           </Box>
         </Grid>
       </Grid>

@@ -1,8 +1,8 @@
 export const openLinkInNewTab = url => {
   if(!url) return;
 
-  const win =  window.open(url);
-  if (!win || win.closed || typeof win.closed === 'undefined') {
+  //const win =  window.open(url);
+  //if (!win || win.closed || typeof win.closed === 'undefined') {
     //POPUP BLOCKED
     
     const link = document.createElement("a");
@@ -14,5 +14,5 @@ export const openLinkInNewTab = url => {
     link.click();
 
     link.parentNode.removeChild(link);
-  }
+ // }
 }

@@ -5,12 +5,14 @@ import { withRouter } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 import { Box, Grid, Hidden } from '@material-ui/core'
 
+import BottomScrollListener from 'react-bottom-scroll-listener'
+
 import Header from './header'
 import TopBar from './top-bar'
 import List from './list'
 import Filters from './filter'
 
-import { dealSearchHelper } from '../shared'
+import { dealSearchHelper, openLinkInNewTab } from '../helpers'
 
 import { styles } from './DealsStyles'
 
@@ -49,14 +51,48 @@ class Deals extends React.Component {
     this.jumpTo(search);
   }
 
+  queryMore = () => {
+
+    const { searchResult = {}, location } = this.props;
+    if(!searchResult.more || !searchResult.page) return;
+    
+    const page = searchResult.page + 1;
+    const query = dealSearchHelper.getQueryFromSearchString(location.search);
+    query.page = page;
+
+    this.props.queryMoreDeals(query);
+  }
+
+  buyNow = deal => {
+    if (!deal || !deal.id) return Promise.resolve(true);
+
+    return this.props.visitDeal(deal.id)
+      .then(response => {
+        //console.log('visit deal: ', response);
+        if (response.source) openLinkInNewTab(response.source);
+        return response;
+      })
+      .catch(error => {
+        //console.log('error:', error);
+        if (Array.isArray(error.errors) && error.errors.length > 0) {
+          return Promise.reject(error.errors[0]);
+        }
+        else {
+          return Promise.reject({
+            code: 500,
+            message: 'Internal server error'
+          })
+        }
+      })
+  }
+
   jumpTo = next => {
     const { history } = this.props;
     history.push(next);
   }
 
   render() {
-    const { search, classes } = this.props;
-    const searchResult = (search && search.result) || {}
+    const { searchResult = {}, classes } = this.props;
 
     return (
       <Box>
@@ -70,17 +106,18 @@ class Deals extends React.Component {
               </Grid>
             </Hidden>
             <Grid item md={10} sm={12}>
-              <List deals={searchResult.deals} />
+              <List deals={searchResult.deals} onBuyNow={this.buyNow}/>
             </Grid>
           </Grid>
         </Box>
+        <BottomScrollListener onBottom={this.queryMore} />
       </Box>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  search: state.deals.search,
+  searchResult: state.deals.search.result,
 })
 
 const mapDispatchToProps = {

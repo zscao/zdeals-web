@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Box, Typography, Checkbox } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -13,7 +13,7 @@ function ListView({filter = {}, onChange, classes}) {
   }, [filter]) 
 
 
-  const changeFilter = (item, checked) => {
+  const changeFilter = useCallback((item, checked) => {
     item.selected = checked;
 
     if(!onChange) return;
@@ -28,14 +28,17 @@ function ListView({filter = {}, onChange, classes}) {
       }
     })
     onChange(current.code, selected)
-  }
+  }, [current, onChange])
+
+
+  if(!Array.isArray(current.items) || current.items.length === 0) return null;
 
   return (
       <Box>
         <Typography variant="h6">
           {current.title}
         </Typography>
-        {Array.isArray(current.items) && current.items.map(item => (
+        {current.items.map(item => (
           <Box key={item.value} display="flex" justifyContent="space-between" alignItems="center" className={classes.item}>
             <span>{item.name}</span>
             <Checkbox classes={{root: classes.checkbox}} checked={item.selected} color="default" onChange={e => changeFilter(item, e.target.checked)} />

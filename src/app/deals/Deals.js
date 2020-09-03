@@ -5,8 +5,8 @@ import { withRouter } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 import { Box, Grid, Hidden } from '@material-ui/core'
 
-import HeadBar from './header'
-import Toolbar from './toobar'
+import Header from './header'
+import TopBar from './top-bar'
 import List from './list'
 import Filters from './filter'
 
@@ -14,17 +14,10 @@ import { dealSearchHelper } from '../shared'
 
 import { styles } from './DealsStyles'
 
-import * as dealsAction from '../../state/ducks/deals/actions'
+import * as dealActions from '../../state/ducks/deals/actions'
 
 
 class Deals extends React.Component {
-
-  componentDidMount() {
-    const { searchDeals, location } = this.props;
-    const query = dealSearchHelper.getQueryFromSearchString(location.search);
-
-    searchDeals(query);
-  }
 
   componentDidUpdate(prevProps) {
     const currLocation = this.props.location;
@@ -34,16 +27,6 @@ class Deals extends React.Component {
       const query = dealSearchHelper.getQueryFromSearchString(currLocation.search);
       this.props.searchDeals(query);
     }
-  }
-
-  searchDeals = (query = {}) => {
-
-    const { location } = this.props;
-    if(!query.c) query.c = undefined;
-    if(!query.k) query.k = undefined;
-
-    const search = dealSearchHelper.getSearchUrlFromLocation(location.pathname, null, query);
-    this.jumpTo(search);
   }
 
   sortDeals = sort => {
@@ -77,8 +60,8 @@ class Deals extends React.Component {
 
     return (
       <Box>
-        <HeadBar onSearch={this.searchDeals} />
-        <Toolbar onSort={this.sortDeals} />
+        <Header />
+        <TopBar onSort={this.sortDeals} />
         <Box className={classes.dealsBox}>
           <Grid container>
             <Hidden smDown>
@@ -98,11 +81,10 @@ class Deals extends React.Component {
 
 const mapStateToProps = state => ({
   search: state.deals.search,
-  loaded: state.deals.loaded
 })
 
 const mapDispatchToProps = {
-  ...dealsAction
+  ...dealActions
 }
 
 const styled = withStyles(styles)(Deals);

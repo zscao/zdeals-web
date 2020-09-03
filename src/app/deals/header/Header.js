@@ -1,15 +1,15 @@
 import React from 'react'
 
-import { Box, AppBar, Toolbar, Typography, Button, IconButton } from '@material-ui/core'
+import { Box, AppBar, Toolbar, Typography, IconButton } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
-import SearchBar from './SearchBar'
+import SearchBar from '../search-bar'
 
 import { withStyles } from '@material-ui/core/styles'
-import { styles } from './HeadBarStyles'
+import { styles } from './HeaderStyles'
 
-function HeadBar({onSearch, classes}) {
+function Header({classes}) {
 
   return (
     <>
@@ -23,7 +23,7 @@ function HeadBar({onSearch, classes}) {
           </Typography>
           
           <Box flexGrow={1} className={classes.searchSection}>
-            <SearchBar onSearch={onSearch} />
+            <SearchBar />
           </Box>
 
           <Box display="flex" justifyContent="flex-end" className={classes.actionSection}>
@@ -46,5 +46,5 @@ function HeadBar({onSearch, classes}) {
   )
 }
 
-const styled = withStyles(styles)(HeadBar)
+const styled = withStyles(styles)(Header)
 export default styled

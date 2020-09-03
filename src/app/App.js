@@ -1,14 +1,17 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
-import { Container } from '@material-ui/core'
-import { ThemeProvider } from '@material-ui/core'
+import { Container, ThemeProvider, CssBaseline } from '@material-ui/core'
+
+import { withSplashScreen } from './shared'
 
 import DealsPage from './deals'
 import AboutPage from './about'
-import HomePage from './home'
+import Footer from './footer'
 
 import { theme, useStyles } from './AppStyles'
+
+const DealsWithSplash = withSplashScreen(DealsPage)
 
 function App() {
 
@@ -16,22 +19,26 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-    <Container classes={{root: classes.mainRoot}}>
-      <Router>
-        <Switch>
-          {/* <Route exact path="/">
-            <HomePage />
-          </Route> */}
-          <Route path="/deals">
-            <DealsPage />
-          </Route>
-          <Route path="/about">
-            <AboutPage />
-          </Route>
-          <Redirect to="/deals" />
-        </Switch>
-      </Router>
-    </Container>
+      <CssBaseline />
+      <Container classes={{ root: classes.mainRoot }}>
+        <div className={classes.content}>
+          <Router>
+            <Switch>
+              {/* <Route exact path="/">
+              <HomePage />
+            </Route> */}
+              <Route path="/deals">
+                <DealsWithSplash />
+              </Route>
+              <Route path="/about">
+                <AboutPage />
+              </Route>
+              <Redirect to="/deals" />
+            </Switch>
+          </Router>
+          <Footer />
+        </div>
+      </Container>
     </ThemeProvider>
   );
 }

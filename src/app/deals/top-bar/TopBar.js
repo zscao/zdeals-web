@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles'
 import { Box, NativeSelect, IconButton, Hidden } from '@material-ui/core'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 
-import { styles } from './ToolbarStyles'
+import { styles } from './TopBarStyles'
 
 
 const SortByOptions = {
@@ -12,12 +12,12 @@ const SortByOptions = {
   price_desc: "Price: High to Low",
 }
 
-function Toolbar({classes, onSort}) {
+function TopBar({classes, onSort}) {
 
   const sortKeys = Object.keys(SortByOptions);
 
   return (
-    <Box display="flex" justifyContent="space-between" alignItems="center" className={classes.toolbar}>
+    <Box display="flex" justifyContent="space-between" alignItems="center" className={classes.topbar}>
       <div>
         <Hidden mdUp>
           <IconButton aria-label="filters">
@@ -35,5 +35,5 @@ function Toolbar({classes, onSort}) {
   )
 }
 
-const styled = withStyles(styles)(Toolbar)
+const styled = withStyles(styles)(TopBar)
 export default styled

@@ -7,6 +7,9 @@ export const theme = createMuiTheme({
     },
     secondary: {
       main: "#FF7B31"
+    },
+    background: {
+      default: '#EAEDED'
     }
   }
 });
@@ -18,5 +21,8 @@ export const useStyles = makeStyles(theme => ({
       paddingLeft: 0,
       paddingRight: 0,
     }
+  },
+  content: {
+    backgroundColor: '#fff',
   }
 }));

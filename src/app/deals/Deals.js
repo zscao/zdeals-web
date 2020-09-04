@@ -69,7 +69,7 @@ class Deals extends React.Component {
     return this.props.visitDeal(deal.id)
       .then(response => {
         //console.log('visit deal: ', response);
-        if (response.source) openLinkInNewTab(response.source);
+        // if (response.source) openLinkInNewTab(response.source);
         return response;
       })
       .catch(error => {

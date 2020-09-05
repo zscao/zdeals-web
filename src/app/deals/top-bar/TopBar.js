@@ -5,14 +5,13 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 
 import { styles } from './TopBarStyles'
 
-
 const SortByOptions = {
   default: "Default",
   price_asc: "Price: Low to High",
   price_desc: "Price: High to Low",
 }
 
-function TopBar({classes, onSort}) {
+function TopBar({sort = 'default', onSort, classes}) {
 
   const sortKeys = Object.keys(SortByOptions);
 
@@ -27,7 +26,7 @@ function TopBar({classes, onSort}) {
       </div>
       <div>
         <span className={classes.sort}>Sort by:</span>
-        <NativeSelect inputProps={{ 'aria-label': 'sort by' }} disableUnderline className={classes.select} onChange={e => onSort(e.target.value)}>
+        <NativeSelect inputProps={{ 'aria-label': 'sort by' }} value={sort} disableUnderline className={classes.select} onChange={e => onSort(e.target.value)}>
           {sortKeys.map(key => <option key={key} value={key}>{SortByOptions[key]}</option>)}
         </NativeSelect>
       </div>

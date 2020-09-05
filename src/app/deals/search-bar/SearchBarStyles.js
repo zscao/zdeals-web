@@ -11,11 +11,13 @@ export const styles = theme => ({
   searchButton: {
     borderRadius: theme.shape.borderRadius,
     marginLeft: theme.spacing(1),
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1),
     backgroundColor: theme.palette.warning.light,
     '&:hover': {
       backgroundColor: fade(theme.palette.warning.main, 1),
+    },
+    [theme.breakpoints.up('sm')]: {
+      paddingLeft: theme.spacing(1),
+      paddingRight: theme.spacing(1),
     }
   },
   select: {

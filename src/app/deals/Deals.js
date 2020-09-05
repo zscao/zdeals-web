@@ -12,14 +12,25 @@ import TopBar from './top-bar'
 import List from './list'
 import Filters from './filter'
 
-import { dealSearchHelper, openLinkInNewTab } from '../helpers'
+import { dealSearchHelper } from '../helpers'
 
 import { styles } from './DealsStyles'
 
 import * as dealActions from '../../state/ducks/deals/actions'
 
+const DEFAULT_SORT = "default";
 
 class Deals extends React.Component {
+
+  constructor(props) {
+    super(props);
+    
+    const query = dealSearchHelper.getQueryFromSearchString(this.props.location.search);
+    this.state = {
+      sort: query.sort || DEFAULT_SORT
+    }
+  }
+
 
   componentDidUpdate(prevProps) {
     const currLocation = this.props.location;
@@ -28,13 +39,17 @@ class Deals extends React.Component {
     if(currLocation.search !== prevLocation.search) {
       const query = dealSearchHelper.getQueryFromSearchString(currLocation.search);
       this.props.searchDeals(query);
+
+      this.setState({
+        sort: query.sort || DEFAULT_SORT
+      });
     }
   }
 
   sortDeals = sort => {
 
     const { location } = this.props;
-    if(sort === 'default') sort = undefined;
+    if(sort === DEFAULT_SORT) sort = undefined;
 
     const search = dealSearchHelper.getSearchUrlFromLocation(location.pathname, location.search, {sort});
     this.jumpTo(search);
@@ -97,7 +112,7 @@ class Deals extends React.Component {
     return (
       <Box>
         <Header />
-        <TopBar onSort={this.sortDeals} />
+        <TopBar onSort={this.sortDeals} sort={this.state.sort} />
         <Box className={classes.dealsBox}>
           <Grid container>
             <Hidden smDown>
@@ -110,7 +125,7 @@ class Deals extends React.Component {
             </Grid>
           </Grid>
         </Box>
-        <BottomScrollListener onBottom={this.queryMore} />
+        <BottomScrollListener offset={50} onBottom={this.queryMore} />
       </Box>
     )
   }

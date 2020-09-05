@@ -59,9 +59,10 @@ export const useStyles = makeStyles(theme => ({
     },
     '& .highlight': {
       fontWeight: 600,
+      color: theme.palette.success.main,
     }
   },
   actions: {
-    textAlign: 'center',
+    // textAlign: 'center',
   },
 }))

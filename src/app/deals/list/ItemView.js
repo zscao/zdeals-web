@@ -58,14 +58,14 @@ export default function ItemView({ deal, onBuyNow }) {
           {expired && <Alert severity="warning">Oops! This deal is temporarily unavailable or has expired.</Alert>}
         </Grid>
         <Grid item sm={2} xs={12}>
-          <Box className={classes.actions}>
+          <Box display="flex" justifyContent="center" className={classes.actions}>
             <Button 
               color="primary"variant="contained" 
               href={deal.source} target="_blank" rel="noopener" 
               disabled={expired || loading} 
               onClick={buyNow}>
                 {loading ? 'Opening' : 'Buy Now'}
-              </Button>
+            </Button>
           </Box>
         </Grid>
       </Grid>

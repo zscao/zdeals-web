@@ -7,9 +7,8 @@ export const styles = theme => ({
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
     [theme.breakpoints.up('md')]: {
-      marginTop: theme.spacing(1),
-    }
-    
+      marginTop: theme.spacing(3),
+    },    
   },
   select: {
     paddingLeft: theme.spacing(1),

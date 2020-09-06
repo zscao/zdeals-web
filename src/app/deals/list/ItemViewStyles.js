@@ -16,7 +16,7 @@ export const useStyles = makeStyles(theme => ({
     fontSize: '.75em',
     color: '#999',
     '& a': {
-      color: '#999',
+      color: theme.palette.info.main,
       textDecoration: 'none',
       '&:hover': {
         color: '#007bff'

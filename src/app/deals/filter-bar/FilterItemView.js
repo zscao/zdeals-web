@@ -14,7 +14,7 @@ function ItemView({ filter, onChange, onClear, classes }) {
         <Typography variant="button">
           {filter.title}
         </Typography>
-        {hasSelected ? <div className={classes.clear} onClick={onClear}>Clear</div> : <div></div>}
+        {hasSelected ? <div className={classes.clear} onClick={onClear}>CLEAR</div> : <div></div>}
       </Box>
       {filter.items.map(item => (
         <Box key={item.value} display="flex" justifyContent="space-between" alignItems="center" className={classes.item}>

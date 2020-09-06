@@ -3,14 +3,14 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import { withStyles } from '@material-ui/core/styles'
-import { Box, Grid, Hidden } from '@material-ui/core'
+import { Box, Grid, Hidden, Drawer } from '@material-ui/core'
 
 import BottomScrollListener from 'react-bottom-scroll-listener'
 
 import Header from './header'
 import TopBar from './top-bar'
 import List from './list'
-import Filters from './filter'
+import FilterBar from './filter-bar'
 
 import { dealSearchHelper } from '../helpers'
 
@@ -27,7 +27,8 @@ class Deals extends React.Component {
     
     const query = dealSearchHelper.getQueryFromSearchString(this.props.location.search);
     this.state = {
-      sort: query.sort || DEFAULT_SORT
+      sort: query.sort || DEFAULT_SORT,
+      isShowFilters: false,
     }
   }
 
@@ -55,13 +56,13 @@ class Deals extends React.Component {
     this.jumpTo(search);
   }
 
-  filterDeals = (code, items) => {
+  filterDeals = (filter, shouldToggleFilters) => {
 
-    const filter = {[code]: items};
     //console.log('filter: ', filter);
 
-    const { location } = this.props;
+    if(shouldToggleFilters) this.toggleFitlers();
 
+    const { location } = this.props;
     const search = dealSearchHelper.getSearchUrlFromLocation(location.pathname, location.search, filter);
     this.jumpTo(search);
   }
@@ -101,6 +102,15 @@ class Deals extends React.Component {
       })
   }
 
+  toggleFitlers = () => {
+    //console.log('toggle filter')
+    this.setState({
+      isShowFilters: !this.state.isShowFilters
+    })
+  }
+
+
+
   jumpTo = next => {
     const { history } = this.props;
     history.push(next);
@@ -112,20 +122,25 @@ class Deals extends React.Component {
     return (
       <Box>
         <Header />
-        <TopBar onSort={this.sortDeals} sort={this.state.sort} />
+        <TopBar sort={this.state.sort} onSort={this.sortDeals} onMore={this.toggleFitlers} />
         <Box className={classes.dealsBox}>
           <Grid container>
             <Hidden smDown>
               <Grid item md={2}>
-                <Filters filters={searchResult.filters} onChange={this.filterDeals} />
+                <FilterBar filters={searchResult.filters} onChange={filter => this.filterDeals(filter, false)} />
               </Grid>
             </Hidden>
             <Grid item md={10} sm={12}>
               <List deals={searchResult.deals} onBuyNow={this.buyNow}/>
+              <BottomScrollListener offset={50} onBottom={this.queryMore} />
             </Grid>
           </Grid>
         </Box>
-        <BottomScrollListener offset={50} onBottom={this.queryMore} />
+        <Hidden mdUp>
+          <Drawer anchor="bottom" open={this.state.isShowFilters} onClose={this.toggleFitlers}>
+            <FilterBar inDrawer filters={searchResult.filters} onChange={filter => this.filterDeals(filter, true)} />
+          </Drawer>
+        </Hidden>
       </Box>
     )
   }

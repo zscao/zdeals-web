@@ -11,7 +11,7 @@ const SortByOptions = {
   price_desc: "Price: High to Low",
 }
 
-function TopBar({sort = 'default', onSort, classes}) {
+function TopBar({sort = 'default', onSort, onMore, classes}) {
 
   const sortKeys = Object.keys(SortByOptions);
 
@@ -19,7 +19,7 @@ function TopBar({sort = 'default', onSort, classes}) {
     <Box display="flex" justifyContent="space-between" alignItems="center" className={classes.topbar}>
       <div>
         <Hidden mdUp>
-          <IconButton aria-label="filters">
+          <IconButton aria-label="filters" onClick={onMore}>
             <MoreHorizIcon />
           </IconButton>
         </Hidden>

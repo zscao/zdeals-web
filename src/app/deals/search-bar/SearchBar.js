@@ -98,15 +98,17 @@ class SearchBar extends React.Component {
           className={classes.select} 
           value={this.state.category}
           onChange={e => this.setCategory(e.target.value)}>
-            <option value=''>All</option>
+            <option value=''>All Categories</option>
             {categories.map(x => <option key={x.code} value={x.code}>{'..'.repeat(x.path.length - 1) + x.title}</option>)}
         </NativeSelect>
+
         <InputBase 
           classes={{ root: classes.inputRoot, input: classes.inputInput }}
           value={this.state.keywords}
           onChange={e => this.setKeywords(e.target.value)} 
           inputRef={e => this.keywordsInput = e} 
           onKeyPress={this.onKeywordsInputKeyPress} />
+          
         <Box className={classes.searchButton}>
           <IconButton color="inherit" aria-label="search" onClick={this.search}>
             <SearchIcon />

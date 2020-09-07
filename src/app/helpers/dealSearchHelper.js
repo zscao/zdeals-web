@@ -15,6 +15,7 @@ function getQueryFromSearchString(searchString = '') {
   if(search.sort) query.sort = search.sort;
   if(search.store) query.store = search.store;
   if(search.brand) query.brand = search.brand;
+  if(search.del) query.del = search.del; // delivery 
 
   return query;
 }
@@ -30,7 +31,7 @@ function getSearchUrlFromLocation(pathname, search, newParams = {}) {
 
 function getSearchFromString(searchString = '') {
   
-  const validKeys = ['c', 'k', 'sort', 'store', 'brand'];
+  const validKeys = ['c', 'k', 'sort', 'store', 'brand', 'del'];
 
   const parsed = queryString.parse(searchString, {arrayFormat: 'comma'});
   const search = {};

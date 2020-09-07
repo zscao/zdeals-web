@@ -30,6 +30,7 @@ export const useStyles = makeStyles(theme => ({
   description: {
     fontSize: '0.8em',
     color: '#212529',
+    paddingTop:  theme.spacing(1),
     marginBottom: theme.spacing(1),
   },
   picture: {
@@ -43,7 +44,7 @@ export const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(2),
     color: theme.palette.primary.main,
     fontSize: '0.9em',
-    lineHeight: '1.8em',
+    lineHeight: '2.0em',
     '& > .deal-price': {
       fontSize: '1.4em',
       fontWeight: 600,
@@ -56,11 +57,11 @@ export const useStyles = makeStyles(theme => ({
       background: theme.palette.primary.main,
       color: '#fff',
       outline: 0,
-      margin: '0 10px',
+      marginLeft: '8px',
       padding: '2px 4px',
     },
     '& .highlight': {
-      marginRight: '3px',
+      margin: '0 8px',
       fontWeight: 600,
       color: theme.palette.success.main,
     },

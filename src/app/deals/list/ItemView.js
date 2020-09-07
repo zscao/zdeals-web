@@ -51,7 +51,7 @@ export default function ItemView({ deal, onBuyNow }) {
           <Box className={classes.price}>
             <span className="deal-price">{deal.dealPriceString}</span>
             {deal.fullPriceString && <del>{deal.fullPriceString}</del>}
-            <span className="discount">{deal.discount}</span>
+            {deal.discount && <span className="discount">{deal.discount}</span>}
             <span className="highlight">{deal.highlight}</span>{' '}
             {deal.freeShipping && <span className="delivery">Free Shipping</span>}
           </Box>

@@ -52,7 +52,8 @@ export default function ItemView({ deal, onBuyNow }) {
             <span className="deal-price">{deal.dealPriceString}</span>
             {deal.fullPriceString && <del>{deal.fullPriceString}</del>}
             <span className="discount">{deal.discount}</span>
-            <span className="highlight">{deal.highlight}</span>
+            <span className="highlight">{deal.highlight}</span>{' '}
+            {deal.freeShipping && <span className="delivery">Free Shipping</span>}
           </Box>
           <Typography variant="body2" classes={{ root: classes.description }}>{deal.description}</Typography>
           {expired && <Alert severity="warning">Oops! This deal is temporarily unavailable or has expired.</Alert>}

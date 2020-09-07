@@ -43,11 +43,13 @@ export const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(2),
     color: theme.palette.primary.main,
     fontSize: '0.9em',
+    lineHeight: '1.8em',
     '& > .deal-price': {
       fontSize: '1.4em',
       fontWeight: 600,
     },
     '& del': {
+      marginLeft: '5px',
       color: '#999',
     },
     '& .discount': {
@@ -55,11 +57,21 @@ export const useStyles = makeStyles(theme => ({
       color: '#fff',
       outline: 0,
       margin: '0 10px',
-      padding: '2px 5px',
+      padding: '2px 4px',
     },
     '& .highlight': {
+      marginRight: '3px',
       fontWeight: 600,
       color: theme.palette.success.main,
+    },
+    '& .delivery': {
+      // marginLeft: '10px',
+      padding: '2px 5px',
+      fontWeight: 500,
+      whiteSpace:'nowrap',
+      //borderRadius: '3px',
+      border: '1px solid',
+      borderColor: theme.palette.primary.main,
     }
   },
   actions: {

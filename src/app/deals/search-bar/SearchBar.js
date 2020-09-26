@@ -22,6 +22,7 @@ class SearchBar extends React.Component {
     this.state = {
       category: query.c || '',
       keywords: query.k || '',
+      loading: false,
     }
   }
 
@@ -51,6 +52,14 @@ class SearchBar extends React.Component {
         this.setState({...state});
       }
     }
+
+    // set loading state
+    if(dealSearchHelper.isSearchingDeals(this.props.loadings)) {
+      if(!this.state.loading) this.setState({loading: true});
+    }
+    else if(this.state.loading) {
+      this.setState({loading: false});
+    }
   }
 
   setCategory = category => {
@@ -68,6 +77,8 @@ class SearchBar extends React.Component {
   }
 
   search = () => {
+    if(this.state.loading) return;
+
     const query = {};
     if(this.state.category) query.c = this.state.category;
 
@@ -99,7 +110,7 @@ class SearchBar extends React.Component {
           value={this.state.category}
           onChange={e => this.setCategory(e.target.value)}>
             <option value=''>All Categories</option>
-            {categories.map(x => <option key={x.code} value={x.code}>{'..'.repeat(x.path.length - 1) + x.title}</option>)}
+            {categories.map(x => <option key={x.code} value={x.code}>{'-- '.repeat(x.path.length - 1) + x.title}</option>)}
         </NativeSelect>
 
         <InputBase 
@@ -110,7 +121,7 @@ class SearchBar extends React.Component {
           onKeyPress={this.onKeywordsInputKeyPress} />
           
         <Box className={classes.searchButton}>
-          <IconButton color="inherit" aria-label="search" onClick={this.search}>
+          <IconButton color="inherit" aria-label="search" onClick={this.search} disabled={this.state.loading}>
             <SearchIcon />
           </IconButton>
         </Box>
@@ -123,6 +134,7 @@ class SearchBar extends React.Component {
 const mapStateToProps = state => ({
   search: state.deals.search,
   categories: state.categories.list.result,
+  loadings: state.api.loadings,
 })
 
 const styled = withStyles(styles)(SearchBar);

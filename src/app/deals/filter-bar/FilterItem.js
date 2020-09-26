@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import FilterItemView from './FilterItemView'
 import FilterItemViewInDrawer from './FilterItemViewInDrawer'
 
-function FilterItem({ inDrawer, filter = {}, onChange, classes }) {
+function FilterItem({ inDrawer, filter = {}, onChange, loading }) {
 
   const [current, setCurrent] = useState(filter);
 
@@ -37,8 +37,8 @@ function FilterItem({ inDrawer, filter = {}, onChange, classes }) {
   if (!Array.isArray(current.items) || current.items.length === 0) return null;
 
   return inDrawer 
-      ? <FilterItemViewInDrawer filter={current} onChange={changeFilter} onClear={clear} />
-      : <FilterItemView filter={current} onChange={changeFilter} onClear={clear} />
+      ? <FilterItemViewInDrawer filter={current} onChange={changeFilter} onClear={clear} loading={loading} />
+      : <FilterItemView filter={current} onChange={changeFilter} onClear={clear} loading={loading} />
 }
 
 export default FilterItem

@@ -1,9 +1,12 @@
 import queryString from 'query-string'
 
+import * as dealTypes from '../../state/ducks/deals/types'
+
 export const dealSearchHelper = {
   getQueryFromSearchString,
   getSearchUrlFromLocation,
   getSearchFromString,
+  isSearchingDeals,
 };
 
 function getQueryFromSearchString(searchString = '') {
@@ -41,4 +44,8 @@ function getSearchFromString(searchString = '') {
   })
 
   return search;
+}
+
+function isSearchingDeals(loadings = []) {
+  return loadings.includes(dealTypes.SEARCH_DEALS) || loadings.includes(dealTypes.QUERY_MORE)
 }

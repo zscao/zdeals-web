@@ -14,7 +14,7 @@ export const styles = theme => ({
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
     borderRadius: theme.shape.borderRadius,
-    fontSize: '0.9em',
+    fontSize: '1.0em',
     backgroundColor: '#f3f3f3',
     '&:hover': {
       backgroundColor: fade('#dadada', 1),
@@ -22,6 +22,6 @@ export const styles = theme => ({
   },
   sort: {
     paddingRight: theme.spacing(1),
-    fontSize: '0.8em',
+    fontSize: '0.9em',
   }
 })

@@ -11,7 +11,7 @@ const SortByOptions = {
   price_desc: "Price: High to Low",
 }
 
-function TopBar({sort = 'default', onSort, onMore, classes}) {
+function TopBar({sort = 'default', onSort, onMore, loading, classes}) {
 
   const sortKeys = Object.keys(SortByOptions);
 
@@ -19,14 +19,14 @@ function TopBar({sort = 'default', onSort, onMore, classes}) {
     <Box display="flex" justifyContent="space-between" alignItems="center" className={classes.topbar}>
       <div>
         <Hidden mdUp>
-          <IconButton aria-label="filters" onClick={onMore}>
+          <IconButton aria-label="filters" onClick={onMore} disabled={loading}>
             <MoreHorizIcon />
           </IconButton>
         </Hidden>
       </div>
       <div>
         <span className={classes.sort}>Sort by:</span>
-        <NativeSelect inputProps={{ 'aria-label': 'sort by' }} value={sort} disableUnderline className={classes.select} onChange={e => onSort(e.target.value)}>
+        <NativeSelect inputProps={{ 'aria-label': 'sort by' }} value={sort} disableUnderline className={classes.select} onChange={e => onSort(e.target.value)} disabled={loading}>
           {sortKeys.map(key => <option key={key} value={key}>{SortByOptions[key]}</option>)}
         </NativeSelect>
       </div>

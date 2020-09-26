@@ -25,7 +25,7 @@ export const styles = theme => ({
     borderTopLeftRadius: theme.shape.borderRadius,
     borderBottomLeftRadius: theme.shape.borderRadius,
     borderRight: '1px solid #cdcdcd',
-    fontSize: '0.9em',
+    fontSize: '1.0em',
     backgroundColor: '#f3f3f3',
     '&:hover': {
       backgroundColor: fade('#dadada', 1),

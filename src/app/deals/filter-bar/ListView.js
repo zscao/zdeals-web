@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box } from '@material-ui/core'
+import { Box, Button } from '@material-ui/core'
 
 import { withStyles } from '@material-ui/core/styles'
 import { styles } from './ListViewStyles'
@@ -7,12 +7,12 @@ import { styles } from './ListViewStyles'
 import FilterItem from './FilterItem'
 
 /// mode: drawer/panel
-function ListView({inDrawer, filters = [], onChange, classes}) {
+function ListView({inDrawer, filters = [], onChange, loading, classes}) {
   
   const [changed, setChanged] = useState({});
 
   const changeFilter = (code, selected) => {
-    if(!inDrawer) {
+    if(!inDrawer && !loading) {
       onChange({[code]: selected});
       return;
     }
@@ -24,15 +24,16 @@ function ListView({inDrawer, filters = [], onChange, classes}) {
   }
 
   const applyFilters = () => {
+    if(loading) return;
     onChange(changed);
   }
 
   return (
     <Box className={classes.filters}>
       {inDrawer && <Box textAlign="right" className={classes.actions}>
-        <div className={classes.done} onClick={applyFilters}>Done</div>
+        <Button className={classes.done} size="small" onClick={applyFilters} disabled={loading}>Done</Button>
       </Box>}
-      {filters.map(filter => <FilterItem inDrawer={inDrawer} key={filter.code} filter={filter} onChange={changeFilter} />)}
+      {filters.map(filter => <FilterItem inDrawer={inDrawer} key={filter.code} filter={filter} onChange={changeFilter} loading={loading} />)}
     </Box>
   )
 }

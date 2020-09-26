@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import { withStyles } from '@material-ui/core/styles'
-import { Box, Grid, Hidden, Drawer } from '@material-ui/core'
+import { Box, Grid, Hidden, Drawer, LinearProgress } from '@material-ui/core'
 
 import BottomScrollListener from 'react-bottom-scroll-listener'
 
@@ -29,6 +29,7 @@ class Deals extends React.Component {
     this.state = {
       sort: query.sort || DEFAULT_SORT,
       isShowFilters: false,
+      loading: false,
     }
   }
 
@@ -39,11 +40,19 @@ class Deals extends React.Component {
 
     if(currLocation.search !== prevLocation.search) {
       const query = dealSearchHelper.getQueryFromSearchString(currLocation.search);
-      this.props.searchDeals(query);
-
+      
       this.setState({
         sort: query.sort || DEFAULT_SORT
       });
+      this.props.searchDeals(query)
+    }
+
+    // set loading state
+    if(dealSearchHelper.isSearchingDeals(this.props.loadings)) {
+      if(!this.state.loading) this.setState({loading: true});
+    }
+    else if(this.state.loading) {
+      this.setState({loading: false});
     }
   }
 
@@ -68,6 +77,7 @@ class Deals extends React.Component {
   }
 
   queryMore = () => {
+    if(this.state.loading) return;
 
     const { searchResult = {}, location } = this.props;
     if(!searchResult.more || !searchResult.page) return;
@@ -76,7 +86,7 @@ class Deals extends React.Component {
     const query = dealSearchHelper.getQueryFromSearchString(location.search);
     query.page = page;
 
-    this.props.queryMoreDeals(query);
+    this.props.queryMoreDeals(query)
   }
 
   buyNow = deal => {
@@ -122,12 +132,13 @@ class Deals extends React.Component {
     return (
       <Box>
         <Header />
-        <TopBar sort={this.state.sort} onSort={this.sortDeals} onMore={this.toggleFitlers} />
+        <LinearProgress variant={this.state.loading ? 'indeterminate' : 'determinate'} value={100} color="secondary" />
+        <TopBar sort={this.state.sort} onSort={this.sortDeals} onMore={this.toggleFitlers} loading={this.state.loading} />
         <Box className={classes.dealsBox}>
           <Grid container>
             <Hidden smDown>
               <Grid item md={2}>
-                <FilterBar filters={searchResult.filters} onChange={filter => this.filterDeals(filter, false)} />
+                <FilterBar filters={searchResult.filters} onChange={filter => this.filterDeals(filter, false)} loading={this.state.loading} />
               </Grid>
             </Hidden>
             <Grid item md={10} sm={12}>
@@ -138,7 +149,7 @@ class Deals extends React.Component {
         </Box>
         <Hidden mdUp>
           <Drawer anchor="bottom" open={this.state.isShowFilters} onClose={this.toggleFitlers}>
-            <FilterBar inDrawer filters={searchResult.filters} onChange={filter => this.filterDeals(filter, true)} />
+            <FilterBar inDrawer filters={searchResult.filters} onChange={filter => this.filterDeals(filter, true)} loading={this.state.loading} />
           </Drawer>
         </Hidden>
       </Box>
@@ -148,6 +159,7 @@ class Deals extends React.Component {
 
 const mapStateToProps = state => ({
   searchResult: state.deals.search.result,
+  loadings: state.api.loadings
 })
 
 const mapDispatchToProps = {

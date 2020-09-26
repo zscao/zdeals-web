@@ -11,10 +11,7 @@ export const styles = theme => ({
     backgroundColor: '#F3F3F3',
   },
   done: {
-    cursor: 'pointer',
     color: theme.palette.info.main,
-    fontWeight: 500,
-    fontSize: '1.1em',
     '&:hover': {
       color: theme.palette.info.main,
     }

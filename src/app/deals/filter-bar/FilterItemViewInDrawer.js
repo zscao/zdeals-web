@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 import { styles } from './FilterItemViewInDrawerStyles'
 
-function ItemView({ filter, onChange, loading, classes }) {
+function ItemView({ filter, onChange, classes }) {
 
   return (
     <Box className={classes.filter}>
@@ -23,7 +23,6 @@ function ItemView({ filter, onChange, loading, classes }) {
               onChange={e => onChange(item, e.target.checked)}
               control={<Checkbox classes={{ root: classes.checkbox }}  />}
               label={item.name}
-              disabled={loading}
             />
           ))}
           </Box>

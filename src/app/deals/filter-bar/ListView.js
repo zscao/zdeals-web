@@ -33,7 +33,7 @@ function ListView({inDrawer, filters = [], onChange, loading, classes}) {
       {inDrawer && <Box textAlign="right" className={classes.actions}>
         <Button className={classes.done} size="small" onClick={applyFilters} disabled={loading}>Done</Button>
       </Box>}
-      {filters.map(filter => <FilterItem inDrawer={inDrawer} key={filter.code} filter={filter} onChange={changeFilter} loading={loading} />)}
+      {filters.map(filter => <FilterItem inDrawer={inDrawer} key={filter.code} filter={filter} onChange={changeFilter} />)}
     </Box>
   )
 }

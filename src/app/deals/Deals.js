@@ -57,6 +57,7 @@ class Deals extends React.Component {
   }
 
   sortDeals = sort => {
+    if(this.state.loading) return;
 
     const { location } = this.props;
     if(sort === DEFAULT_SORT) sort = undefined;
@@ -133,7 +134,7 @@ class Deals extends React.Component {
       <Box>
         <Header />
         <LinearProgress variant={this.state.loading ? 'indeterminate' : 'determinate'} value={100} color="secondary" />
-        <TopBar sort={this.state.sort} onSort={this.sortDeals} onMore={this.toggleFitlers} loading={this.state.loading} />
+        <TopBar sort={this.state.sort} onSort={this.sortDeals} onMore={this.toggleFitlers} />
         <Box className={classes.dealsBox}>
           <Grid container>
             <Hidden smDown>

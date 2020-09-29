@@ -7,6 +7,8 @@ import { withSplashScreen } from './shared'
 
 import DealsPage from './deals'
 import AboutPage from './about'
+import PrivacyPage from './privacy'
+
 import Footer from './shared/footer'
 
 import { theme, useStyles } from './AppStyles'
@@ -24,15 +26,9 @@ function App() {
         <div className={classes.content}>
           <Router>
             <Switch>
-              {/* <Route exact path="/">
-              <HomePage />
-            </Route> */}
-              <Route path="/deals">
-                <DealsWithSplash />
-              </Route>
-              <Route path="/about">
-                <AboutPage />
-              </Route>
+              <Route path="/deals" component={DealsWithSplash} />
+              <Route path="/about" component={AboutPage} />
+              <Route path="/privacy" component={PrivacyPage} />
               <Redirect to="/deals" />
             </Switch>
           </Router>

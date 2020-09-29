@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import { withStyles } from '@material-ui/core/styles'
-import { Box, Grid, Hidden, Drawer, LinearProgress } from '@material-ui/core'
+import { Box, Grid, Hidden, Drawer } from '@material-ui/core'
 
 import BottomScrollListener from 'react-bottom-scroll-listener'
 
@@ -11,6 +11,7 @@ import Header from './header'
 import TopBar from './top-bar'
 import List from './list'
 import FilterBar from './filter-bar'
+import LoadingBar from './loading-bar'
 
 import { dealSearchHelper } from '../helpers'
 
@@ -133,7 +134,7 @@ class Deals extends React.Component {
     return (
       <Box>
         <Header />
-        <LinearProgress variant={this.state.loading ? 'indeterminate' : 'determinate'} value={100} color="secondary" />
+        <LoadingBar loading={this.state.loading} />
         <TopBar sort={this.state.sort} onSort={this.sortDeals} onMore={this.toggleFitlers} />
         <Box className={classes.dealsBox}>
           <Grid container>

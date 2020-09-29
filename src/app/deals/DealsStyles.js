@@ -7,4 +7,12 @@ export const styles = theme => ({
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
   },
+  loadingBar: {
+    colorPrimary: {
+      background: 'blue'
+    },
+    barColorPrimary: {
+      background: 'green'
+    }
+  }
 })

@@ -5,15 +5,29 @@ import { Container, ThemeProvider, CssBaseline } from '@material-ui/core'
 
 import { withSplashScreen } from './shared'
 
+import Header from './header'
 import DealsPage from './deals'
 import AboutPage from './about'
 import PrivacyPage from './privacy'
 
-import Footer from './shared/footer'
+import Footer from './footer'
 
 import { theme, useStyles } from './AppStyles'
 
-const DealsWithSplash = withSplashScreen(DealsPage)
+
+const routes = () => (
+  <>
+    <Header />
+    <Switch>
+      <Route path="/deals" component={DealsPage} />
+      <Route path="/about" component={AboutPage} />
+      <Route path="/privacy" component={PrivacyPage} />
+      <Redirect to="/deals" />
+    </Switch>
+  </>
+);
+
+const RoutesWithSplash = withSplashScreen(routes)
 
 function App() {
 
@@ -25,15 +39,10 @@ function App() {
       <Container classes={{ root: classes.mainRoot }}>
         <div className={classes.content}>
           <Router>
-            <Switch>
-              <Route path="/deals" component={DealsWithSplash} />
-              <Route path="/about" component={AboutPage} />
-              <Route path="/privacy" component={PrivacyPage} />
-              <Redirect to="/deals" />
-            </Switch>
+            <RoutesWithSplash />
           </Router>
-          <Footer />
         </div>
+          <Footer />
       </Container>
     </ThemeProvider>
   );

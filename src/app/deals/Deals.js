@@ -7,7 +7,6 @@ import { Box, Grid, Hidden, Drawer } from '@material-ui/core'
 
 import BottomScrollListener from 'react-bottom-scroll-listener'
 
-import Header from './header'
 import TopBar from './top-bar'
 import List from './list'
 import FilterBar from './filter-bar'
@@ -133,7 +132,6 @@ class Deals extends React.Component {
 
     return (
       <Box>
-        <Header />
         <LoadingBar loading={this.state.loading} />
         <TopBar sort={this.state.sort} onSort={this.sortDeals} onMore={this.toggleFitlers} />
         <Box className={classes.dealsBox}>

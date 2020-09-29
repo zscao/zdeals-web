@@ -4,7 +4,7 @@ import { Box, AppBar, Toolbar, Typography, IconButton } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
-import SearchBar from '../search-bar'
+import SearchBar from './SearchBar'
 
 import { withStyles } from '@material-ui/core/styles'
 import { styles } from './HeaderStyles'

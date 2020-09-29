@@ -35,6 +35,7 @@ export const useStyles = makeStyles(theme => ({
     }
   },
   content: {
+    minHeight: 'calc(100vh - 50px)',
     backgroundColor: '#fff',
   }
 }));

@@ -8,7 +8,7 @@ import SearchIcon from '@material-ui/icons/Search'
 import { withStyles } from '@material-ui/core/styles'
 import { styles } from './SearchBarStyles'
 
-import { dealSearchHelper } from './../../helpers'
+import { dealSearchHelper } from '../helpers'
 
 class SearchBar extends React.Component {
 

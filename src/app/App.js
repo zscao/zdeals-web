@@ -10,6 +10,7 @@ import DealsPage from './deals'
 import AboutPage from './about'
 import PrivacyPage from './privacy'
 
+import NavBar from './nav-bar'
 import Footer from './footer'
 
 import { theme, useStyles } from './AppStyles'
@@ -24,6 +25,7 @@ const routes = () => (
       <Route path="/privacy" component={PrivacyPage} />
       <Redirect to="/deals" />
     </Switch>
+    <NavBar />
   </>
 );
 
@@ -42,7 +44,7 @@ function App() {
             <RoutesWithSplash />
           </Router>
         </div>
-          <Footer />
+        <Footer />
       </Container>
     </ThemeProvider>
   );

@@ -1,0 +1,1 @@
+export const TOGGLE_NAVBAR = 'UI/TOGGLE_NAVBAR'

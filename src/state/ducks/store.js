@@ -5,6 +5,7 @@ import { createLogger } from 'redux-logger'
 import deals from './deals/reducer'
 import categories from './categories/reducer'
 import api from './api/reducer'
+import ui from './ui/reducer'
 
 const middleware = [thunk];
 
@@ -16,7 +17,8 @@ if(process.env.NODE_ENV !== 'production') {
 const reducers = combineReducers({
   deals,
   categories,
-  api
+  api,
+  ui,
 });
 
 export default createStore(

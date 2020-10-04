@@ -2,6 +2,8 @@ import axios from 'axios'
 
 export const baseUrl = process.env.REACT_APP_API_HOST
 
+axios.defaults.withCredentials = true;
+
 export const ajaxFetch = request => {
 
   let {

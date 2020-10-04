@@ -12,6 +12,7 @@ import PrivacyPage from './privacy'
 
 import NavBar from './nav-bar'
 import Footer from './footer'
+import CookieConsent from './cookie-consent'
 
 import { theme, useStyles } from './AppStyles'
 
@@ -26,6 +27,7 @@ const routes = () => (
       <Redirect to="/deals" />
     </Switch>
     <NavBar />
+    <CookieConsent />
   </>
 );
 
@@ -44,7 +46,7 @@ function App() {
             <RoutesWithSplash />
           </Router>
         </div>
-        <Footer />
+        <Footer />        
       </Container>
     </ThemeProvider>
   );

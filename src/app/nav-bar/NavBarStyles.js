@@ -14,7 +14,7 @@ export const styles = theme => ({
     }
   },
   list: {
-    maxWidth: 'calc(100vh - 40px)',
+    height: 'calc(100vh - 40px)',
     overflowY: 'scroll',
   }
 })

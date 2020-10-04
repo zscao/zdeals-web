@@ -6,7 +6,7 @@ import { Drawer, Box, IconButton, List, ListItem, ListItemText, Divider } from '
 import CloseIcon from '@material-ui/icons/Close'
 
 import { styles } from './NavBarStyles'
-import { withStyles } from '@material-ui/styles'
+import { withStyles } from '@material-ui/core/styles'
 
 import * as uiActions from '../../state/ducks/ui/actions'
 

@@ -19,6 +19,12 @@ export const styles = theme => ({
     cursor: 'pointer',
     fontSize: '0.8em',
     color: theme.palette.info.main,
+    textTransform: 'uppercase'
+  },
+  more: {
+    cursor: 'pointer',
+    fontSize: '0.8em',
+    color: theme.palette.secondary.main,
+    textTransform: 'uppercase'
   }
-
 })

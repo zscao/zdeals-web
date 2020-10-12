@@ -34,8 +34,8 @@ export default function ItemView({ deal, onBuyNow }) {
         <Grid item sm={2}></Grid>
         <Grid item sm={8}>
           <Box className={classes.meta}>
-            {deal.store && <span><a target="_blank" rel="noopener noreferrer" href={deal.store.website}>{deal.store.name}</a> | </span>}
-            <span>{deal.createdTimeString}</span>
+            {deal.store && <span><a target="_blank" rel="noopener noreferrer" href={deal.source}>{deal.store.name}</a> | </span>}
+            <span>added {deal.createdTimeString}</span>
           </Box>
         </Grid>
         <Grid item sm={2}></Grid>
@@ -62,7 +62,7 @@ export default function ItemView({ deal, onBuyNow }) {
           <Box display="flex" justifyContent="center" className={classes.actions}>
             <Button 
               color="primary"variant="contained" 
-              href={deal.source} target="_blank" rel="noopener" 
+              href={deal.source} target="_blank" rel="noopener noreferrer" 
               disabled={expired || loading} 
               onClick={buyNow}>
                 {loading ? 'Opening' : 'Buy Now'}

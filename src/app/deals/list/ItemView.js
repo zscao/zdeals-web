@@ -50,7 +50,7 @@ export default function ItemView({ deal, onBuyNow }) {
           <Typography variant="h6" classes={{ root: classes.title }}>{deal.title}</Typography>
           <Box className={classes.price}>
             <span className="deal-price">{deal.dealPriceString}</span>
-            {deal.fullPriceString && <del>{deal.fullPriceString}</del>}
+            {deal.usedPriceString && <del>{deal.usedPriceString}</del>}
             {deal.discount && <span className="discount">{deal.discount}</span>}
             <span className="highlight">{deal.highlight}</span>{' '}
             {deal.freeShipping && <span className="delivery">Free Shipping</span>}

@@ -25,3 +25,10 @@ export const visitDeal = dealId => {
     method: 'POST'
   })
 }
+
+export const loadPriceHistory = dealId => {
+  return dispatchFetch({
+    url: `/deals/price/${dealId}`,
+    label: types.LOAD_PRICE_HISOTRY
+  })
+}

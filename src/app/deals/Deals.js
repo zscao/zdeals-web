@@ -113,6 +113,12 @@ class Deals extends React.Component {
       })
   }
 
+  loadPriceHistory = deal => {
+    if(!deal || !deal.id) return Promise.resolve(true);
+
+    return this.props.loadPriceHistory(deal.id);
+  }
+
   toggleFitlers = () => {
     //console.log('toggle filter')
     this.setState({
@@ -142,7 +148,7 @@ class Deals extends React.Component {
               </Grid>
             </Hidden>
             <Grid item md={10} sm={12}>
-              <List deals={searchResult.deals} onBuyNow={this.buyNow}/>
+              <List deals={searchResult.deals} onBuyNow={this.buyNow} onLoadPriceHistory={this.loadPriceHistory} />
               <BottomScrollListener offset={50} onBottom={this.queryMore} />
             </Grid>
           </Grid>

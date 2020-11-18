@@ -76,13 +76,13 @@ export default function ItemView({ deal, onBuyNow, onLoadPriceHistory }) {
         <Grid item sm={2} xs={12}>
           <Box display="flex" flexDirection="column" justifyContent="center" className={classes.actions}>
             <Button 
-              color="primary"variant="contained" 
+              color="primary" variant="contained" 
               href={deal.source} target="_blank" rel="noopener noreferrer" 
               disabled={expired || loading} 
               onClick={buyNow}>
                 {loading ? 'Opening' : 'Buy Now'}
             </Button>
-            <Button onClick={loadPriceHistory}>Price History</Button>
+            <Button variant="contained" disabled={Array.isArray(price)} onClick={loadPriceHistory}>Price History</Button>
 
           </Box>
 

@@ -77,5 +77,9 @@ export const useStyles = makeStyles(theme => ({
   },
   actions: {
     // textAlign: 'center',
+    '& > button': {
+      marginTop: '10px',
+      fontSize: '11px',
+    }
   },
 }))

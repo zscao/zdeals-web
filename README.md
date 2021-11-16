@@ -1,1 +1,2 @@
-ZDeals Web Client (Material UI)
+#ZDeals Web Client 
+Baked with React and Material UI
